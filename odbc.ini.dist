@@ -1,0 +1,13 @@
+[ODBC Data Sources]
+Databricks=Databricks ODBC Connector
+
+[Databricks]
+Host=<SQL_ENDPOINT_SERVER>
+Port=443
+HTTPPath=<SQL_ENDPOINT_HTTPPATH>
+ThriftTransport=2
+SSL=1
+AuthMech=3
+UID=token
+PWD=<PERSONAL_TOKEN>
+Driver=/opt/simba/spark/lib/64/libsparkodbc_sb64.so
