@@ -16,7 +16,8 @@ Make sure you have [Docker Desktop](https://www.docker.com/products/docker-deskt
 3. Copy config-dist.php
    - `cp -p config-dist.php config.php`
 4. Edit config.php and replace <PERSONAL_TOKEN> with the your account's [Personal Access Token](https://docs.microsoft.com/en-us/azure/databricks/administration-guide/access-control/tokens).
-5. Build the container
-   - `docker build -t databricks_php .`
-6. Run the test connection script
+5. Edit line 21 of test_connection.php to be a valid SELECT query.
+6. Build the container
+   - `docker build --platform linux/amd64 -t databricks_php .`
+7. Run the test connection script
    -  `docker run databricks_php`

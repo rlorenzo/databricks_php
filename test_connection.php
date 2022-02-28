@@ -17,18 +17,16 @@ if (!$odbc) {
     echo "ODBC connect failed: " . odbc_error() . "\n";
 } else {
     echo "ODBC connection successful!\n";
+    // NOTE: The below should be replaced with a valid SELECT query.
+    $sql = 'SELECT...';
+    $resource = odbc_exec($odbc, $sql);
+    if ($resource) {
+        while ($result = odbc_fetch_array($resource)) {
+            print_r($result);
+        }
+    }
     // Resource releasing
     odbc_close($odbc);
-}
-
-// Next try PDO.
-try {
-    echo "\n\nTrying PDO connection...\n";
-    $dsn = 'odbc:Databricks';
-    $pdo = new PDO($dsn, $user, $password);
-    echo "PDO connection successful!\n";
-} catch (Exception $e) {
-    echo "PDO connection failed: " . $e->getMessage() . "\n";
 }
 
 echo "DONE!\n";

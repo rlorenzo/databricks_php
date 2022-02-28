@@ -16,15 +16,6 @@ RUN set -x \
     && docker-php-ext-install odbc \
     && docker-php-source delete
 
-# Quite sure this stuff is necessary - it just installs a bunch of php pdo extensions
-RUN set -x \
-    && apt-get install -y unixodbc unixodbc-dev freetds-dev freetds-bin tdsodbc \
-    && if ! [ -h /usr/lib/libsybdb.a ]; then ln -s /usr/lib/aarch64-linux-gnu/libsybdb.a /usr/lib/; fi \
-    && docker-php-ext-install pdo \
-    && docker-php-ext-install pdo_dblib \
-    && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
-    && docker-php-ext-install pdo_odbc
-
 # Much of the following code was adapted from https://hub.docker.com/r/stephenbutcher/mar10c7/~/dockerfile/
 
 # Install the Databricks ODBC Driver
