@@ -1,4 +1,4 @@
-FROM php:7.4-cli
+FROM --platform=linux/amd64 php:7.4-cli
 
 RUN apt-get update \
     && apt-get install wget unzip git unixodbc unixodbc-dev libpq-dev -y
@@ -19,7 +19,7 @@ RUN set -x \
 # Quite sure this stuff is necessary - it just installs a bunch of php pdo extensions
 RUN set -x \
     && apt-get install -y unixodbc unixodbc-dev freetds-dev freetds-bin tdsodbc \
-    && if ! [ -h /usr/lib/libsybdb.a ]; then ln -s /usr/lib/aarch64-linux-gnu/libsybdb.a /usr/lib/; fi \
+    && if ! [ -h /usr/lib/libsybdb.a ]; then ln -s /usr/lib/x86_64-linux-gnu/libsybdb.a /usr/lib/; fi \
     && docker-php-ext-install pdo \
     && docker-php-ext-install pdo_dblib \
     && docker-php-ext-configure pdo_odbc --with-pdo-odbc=unixODBC,/usr \
